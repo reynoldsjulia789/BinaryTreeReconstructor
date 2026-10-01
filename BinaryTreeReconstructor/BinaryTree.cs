@@ -32,13 +32,13 @@ public class BinaryTree<Type>
         var node   = new Node(postOrderSequence[^1]); // ^1 = last index in span/list/array
         var inOrderRootIdx = inOrderSequence.IndexOf(node.Data);
 
-        var LEFTinOrder    = inOrderSequence  .Slice(0, inOrderRootIdx + 1);
+        var LEFTinOrder    = inOrderSequence  .Slice(0, inOrderRootIdx);
         var LEFTpostOrder  = postOrderSequence.Slice(0, LEFTinOrder.Length);
 
         node.Left  = BuildTreeHelper(LEFTinOrder, LEFTpostOrder);
 
         var RIGHTinOrder   = inOrderSequence  .Slice(inOrderRootIdx + 1);
-        var RIGHTpostOrder = postOrderSequence.Slice((LEFTinOrder.Length - 1), (postOrderSequence.Length - LEFTinOrder.Length - 1));
+        var RIGHTpostOrder = postOrderSequence.Slice((LEFTinOrder.Length), (postOrderSequence.Length - LEFTinOrder.Length - 1));
 
         node.Right = BuildTreeHelper(RIGHTinOrder, RIGHTpostOrder);
 
