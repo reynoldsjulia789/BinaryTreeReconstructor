@@ -24,6 +24,7 @@ public static class Tester
         var resultPostOrderSequence = tree.PostOrderTraversal();
 
         stopwatch.Stop();
+        var treeTraversalTime = stopwatch.ElapsedMilliseconds;
 
         Console.WriteLine();
         Console.WriteLine($"Result: in-order: {{{string.Join(',', resultInOrderSequence)}}}");
@@ -31,7 +32,7 @@ public static class Tester
 
         Console.WriteLine();
         Console.WriteLine($"Tree reconstruction time: {treeCreationTime}ms");
-        Console.WriteLine($"Tree in-order & post-order traversal time: {stopwatch.ElapsedMilliseconds}ms");
+        Console.WriteLine($"Tree in-order & post-order traversal time: {treeTraversalTime}ms");
 
         var inOrderIsAccurate   = inOrderSequence.SequenceEqual(resultInOrderSequence);
         var postOrderIsAccurate = postOrderSequence.SequenceEqual(resultPostOrderSequence);
