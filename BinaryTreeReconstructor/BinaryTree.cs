@@ -12,6 +12,12 @@ public class BinaryTree<Type>
     /// <returns>Returns the constructed tree</returns>
     public static BinaryTree<Type> BuildTree(List<Type> inOrderSequence, List<Type> postOrderSequence)
     {
+        if (inOrderSequence.Count != postOrderSequence.Count 
+            || inOrderSequence.Intersect(postOrderSequence).ToList().Count != inOrderSequence.Count())
+        {
+            throw new ArgumentException("BinaryTree.BuildTree: the sequences provided do not contain the same elements.");
+        }
+
         BinaryTree<Type> tree = new();
 
         tree.BuildTreeHelperStart(inOrderSequence, postOrderSequence);
@@ -28,7 +34,7 @@ public class BinaryTree<Type>
     {
         if (inOrderSequence.Length != postOrderSequence.Length)
         {
-            throw new ArgumentException("BinaryTree.BuildTree: in order and post order sequences are different lengths");
+            throw new ArgumentException("BinaryTree.BuildTreeHelper: in order and post order sequences are different lengths");
         }
 
         if (inOrderSequence.Length == 0) return null;
