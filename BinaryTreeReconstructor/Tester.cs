@@ -34,15 +34,15 @@ public static class Tester
     private static void PrintSequence(string label, List<int> inOrderSequence, List<int> postOrderSequence)
     {
         Console.WriteLine();
-        Console.WriteLine($"{label}: in-order:   {{{string.Join(',', inOrderSequence)}}}");
-        Console.WriteLine($"{label}: post-order: {{{string.Join(',', postOrderSequence)}}}");
+        Console.WriteLine($"{label} in-order:   {{{string.Join(',', inOrderSequence)}}}");
+        Console.WriteLine($"{label} post-order: {{{string.Join(',', postOrderSequence)}}}");
     }
 
     private static void PrintResults(Dictionary<string, long> runtimes, bool result)
     {
         Console.WriteLine();
         Console.WriteLine($"Tree reconstruction time: {runtimes["treeCreationTime"]}ms");
-        Console.WriteLine($"Tree in-order & post-order traversal time: {runtimes["treeTraversalTime"]}ms");
+        Console.WriteLine($"Tree traversal time:      {runtimes["treeTraversalTime"]}ms");
         Console.WriteLine();
         Console.WriteLine($"Tree was accurately reconstructed: {result}");
         Console.WriteLine();
