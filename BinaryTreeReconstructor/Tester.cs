@@ -17,6 +17,7 @@ public static class Tester
         var tree = BinaryTree<int>.BuildTree(inOrderSequence, postOrderSequence);
 
         var treeCreationTime = stopwatch.ElapsedMilliseconds;
+
         stopwatch.Restart();
 
         var resultInOrderSequence   = tree.InOrderTraversal();
@@ -31,5 +32,11 @@ public static class Tester
         Console.WriteLine();
         Console.WriteLine($"Tree reconstruction time: {treeCreationTime}ms");
         Console.WriteLine($"Tree in-order & post-order traversal time: {stopwatch.ElapsedMilliseconds}ms");
+
+        var inOrderIsAccurate   = inOrderSequence.SequenceEqual(resultInOrderSequence);
+        var postOrderIsAccurate = postOrderSequence.SequenceEqual(resultPostOrderSequence);
+
+        Console.WriteLine();
+        Console.WriteLine($"Tree was accurately reconstructed: {inOrderIsAccurate && postOrderIsAccurate}");
     }
 }

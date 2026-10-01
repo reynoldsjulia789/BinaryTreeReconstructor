@@ -60,9 +60,9 @@ public class BinaryTree<Type>
     {
         if (curr is null) return sequence;
 
-        sequence = InOrderTraversal(curr.Left, sequence);
+        InOrderTraversal(curr.Left, sequence);
         sequence.Add(curr.Data);
-        sequence.AddRange(InOrderTraversal(curr.Right, sequence));
+        InOrderTraversal(curr.Right, sequence);
 
         return sequence;
     }
@@ -81,8 +81,8 @@ public class BinaryTree<Type>
     {
         if (curr is null) return sequence;
 
-        sequence = PostOrderTraversal(curr.Left, sequence);
-        sequence.AddRange(PostOrderTraversal(curr.Right, sequence));
+        PostOrderTraversal(curr.Left, sequence);
+        PostOrderTraversal(curr.Right, sequence);
         sequence.Add(curr.Data);
 
         return sequence;
