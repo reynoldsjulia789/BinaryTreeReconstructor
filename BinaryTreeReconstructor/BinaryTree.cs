@@ -15,7 +15,7 @@ public class BinaryTree<Type>
         if (inOrderSequence.Count != postOrderSequence.Count 
             || inOrderSequence.Intersect(postOrderSequence).ToList().Count != inOrderSequence.Count())
         {
-            throw new ArgumentException("BinaryTree.BuildTree: the sequences provided do not contain the same elements.");
+            throw new ArgumentException("BinaryTree.BuildTree: provided sequences do not contain the same elements.");
         }
 
         BinaryTree<Type> tree = new();
@@ -34,27 +34,25 @@ public class BinaryTree<Type>
     {
         if (inOrderSequence.Length != postOrderSequence.Length)
         {
-            throw new ArgumentException("BinaryTree.BuildTreeHelper: in order and post order sequences are different lengths");
+            throw new ArgumentException("BinaryTree.BuildTreeHelper: sequences are different lengths.");
         }
 
         if (inOrderSequence.Length == 0) return null;
 
         if (inOrderSequence.Length == 1) return new Node(inOrderSequence[0]);
 
-        var node   = new Node(postOrderSequence[^1]); // ^1 = last index in span/list/array
-        var inOrderRootIdx = inOrderSequence.IndexOf(node.Data);
+        var inOrderRootIdx = inOrderSequence.IndexOf(postOrderSequence[^1]); // ^1 = last index in span/list/array
 
         var LEFTinOrder    = inOrderSequence  .Slice(0, inOrderRootIdx);
         var LEFTpostOrder  = postOrderSequence.Slice(0, LEFTinOrder.Length);
 
-        node.Left  = BuildTreeHelper(LEFTinOrder, LEFTpostOrder);
-
         var RIGHTinOrder   = inOrderSequence  .Slice(inOrderRootIdx + 1);
-        var RIGHTpostOrder = postOrderSequence.Slice((LEFTinOrder.Length), (postOrderSequence.Length - LEFTinOrder.Length - 1));
+        var RIGHTpostOrder = postOrderSequence.Slice((LEFTinOrder.Length), 
+            (postOrderSequence.Length - LEFTinOrder.Length - 1));
 
-        node.Right = BuildTreeHelper(RIGHTinOrder, RIGHTpostOrder);
-
-        return node;
+        return new(postOrderSequence[^1], 
+            BuildTreeHelper(LEFTinOrder, LEFTpostOrder), 
+            BuildTreeHelper(RIGHTinOrder, RIGHTpostOrder));
     }
 
 
