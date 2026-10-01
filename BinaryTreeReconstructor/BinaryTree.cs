@@ -4,6 +4,12 @@ public class BinaryTree<Type>
 {
     private Node? Root { get; set; }
 
+    /// <summary>
+    /// Reconstructs a tree given an in-order and post-order sequence.
+    /// </summary>
+    /// <param name="inOrderSequence">in-order traversal of the tree</param>
+    /// <param name="postOrderSequence">post-order traversal of the tree</param>
+    /// <returns>Returns the constructed tree</returns>
     public static BinaryTree<Type> BuildTree(List<Type> inOrderSequence, List<Type> postOrderSequence)
     {
         BinaryTree<Type> tree = new();
